@@ -20,7 +20,7 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/appu-rajiv/poc-selenium-robot.git']]])
                 sh("docker build -t robot .")
                 sh("docker run -e SERVER_URL=http://${WEBAPP_IP}:${WEBAPP_PORT} -v " + "\'${WORKSPACE}/testsuites:/workspace\' robot")
-                archiveArtifacts artifacts: 'testsuites/results/report.html', followSymlinks: false
+//                archiveArtifacts artifacts: 'testsuites/results/report.html', followSymlinks: false
             }
         }
     }
