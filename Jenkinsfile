@@ -22,5 +22,10 @@ pipeline {
                 sh("docker run -e SERVER_URL=http://${WEBAPP_IP}:${WEBAPP_PORT} -v " + "\'${WORKSPACE}/testsuites:/workspace\' robot")
             }
         }
+        post { 
+            always { 
+                archiveArtifacts artifacts: 'testsuites/results/report.html', followSymlinks: false
+            }
+        }
     }
 }
